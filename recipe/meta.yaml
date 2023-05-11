@@ -12,18 +12,20 @@ source:
 
 build:
   number: 0
-  noarch: python
   entry_points:
     - protoc-gen-mypy = mypy_protobuf.main:main
     - protoc-gen-mypy_grpc = mypy_protobuf.main:grpc
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<36]
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
+    - python
     - protobuf >=3.19.3
     - types-protobuf >=3.19.5
 
