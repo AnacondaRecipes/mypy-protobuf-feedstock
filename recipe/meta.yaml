@@ -39,7 +39,6 @@ test:
     - protoc-gen-mypy --version
     - protoc-gen-mypy_grpc --version
     - pip check
-    - python -m pytest
 
 about:
   home: https://github.com/dropbox/mypy-protobuf
