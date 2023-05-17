@@ -12,37 +12,44 @@ source:
 
 build:
   number: 0
-  noarch: python
   entry_points:
     - protoc-gen-mypy = mypy_protobuf.main:main
     - protoc-gen-mypy_grpc = mypy_protobuf.main:grpc
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<37]
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python
+    - setuptools
+    - wheel
   run:
-    - python >=3.6
-    - protobuf >=3.19.3
-    - types-protobuf >=3.19.5
+    - python
+    - protobuf >=3.19.4
+    - types-protobuf >=3.19.12
 
 test:
+  requires:
+    - pip
   imports:
     - mypy_protobuf
     - mypy_protobuf.extensions_pb2
   commands:
-    - cat /dev/null | protoc-gen-mypy
-    - cat /dev/null | protoc-gen-mypy_grpc
+    - protoc-gen-mypy --version
+    - protoc-gen-mypy_grpc --version
     - pip check
-  requires:
-    - pip
 
 about:
   home: https://github.com/dropbox/mypy-protobuf
+  dev_url: https://github.com/nipunn1313/mypy-protobuf
+  doc_url: https://github.com/nipunn1313/mypy-protobuf
   summary: Generate mypy stub files from protobuf specs
+  description: |
+    Generate mypy stub files from protobuf specs
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
 
 extra:
   recipe-maintainers:
