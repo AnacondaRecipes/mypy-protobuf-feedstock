@@ -16,7 +16,7 @@ build:
     - protoc-gen-mypy = mypy_protobuf.main:main
     - protoc-gen-mypy_grpc = mypy_protobuf.main:grpc
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true  # [py<36]
+  skip: true  # [py<37]
 
 requirements:
   host:
@@ -26,8 +26,8 @@ requirements:
     - wheel
   run:
     - python
-    - protobuf >=3.19.3
-    - types-protobuf >=3.19.5
+    - protobuf >=3.19.4
+    - types-protobuf >=3.19.12
 
 test:
   requires:
