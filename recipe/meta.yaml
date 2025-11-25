@@ -1,14 +1,13 @@
 {% set name = "mypy-protobuf" %}
-{% set version = "3.6.0" %}
-
+{% set version = "3.7.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/mypy-protobuf-{{ version }}.tar.gz
-  sha256: 02f242eb3409f66889f2b1a3aa58356ec4d909cdd0f93115622e9e70366eca3c
+  url: https://pypi.org/packages/source/m/mypy-protobuf/mypy_protobuf-3.7.0.tar.gz
+  sha256: 912fb281f7c7b3e3a7c9b8695712618a716fddbab70f6ad63eaf68eda80c5efe
 
 build:
   number: 0
@@ -22,7 +21,7 @@ requirements:
   host:
     - pip
     - python
-    - setuptools
+    - setuptools >=42
     - wheel
   run:
     - python
