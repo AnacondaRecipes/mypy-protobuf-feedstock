@@ -1,27 +1,27 @@
 {% set name = "mypy-protobuf" %}
-{% set version = "3.7.0" %}
+{% set version = "5.1.0" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace("-", "_") }}-{{ version }}.tar.gz
-  sha256: 912fb281f7c7b3e3a7c9b8695712618a716fddbab70f6ad63eaf68eda80c5efe
+  sha256: 8493758852a9cdc075a11dbe96c6e37ea2feba5fd5f33ef7442b9a275322a94c
 
 build:
   number: 0
-  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   entry_points:
     - protoc-gen-mypy = mypy_protobuf.main:main
     - protoc-gen-mypy_grpc = mypy_protobuf.main:grpc
+  skip: true  # [py<38]
 
 requirements:
   host:
     - pip
     - python
-    - setuptools >=42
+    - setuptools >=61.2
     - wheel
   run:
     - python
